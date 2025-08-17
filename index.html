@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<head>
+	<title>Hello</title>
+</head>
+<body>
+	<button id="btn_show" onclick="ShowText()">Click me!</button>
+</body>
+
+<script>
+	function ShowText() {
+		const h2 = document.getElementById('txt_show');
+		if (h2 == null) {
+			const h2 = document.createElement('h2');
+
+			h2.id        = "txt_show";
+			h2.innerHTML = "Hello, World!";
+
+			document.body.appendChild(h2);
+		}
+	}
+</script>
