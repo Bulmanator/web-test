@@ -1,0 +1,37 @@
+version: 2.1
+
+orbs:
+  go: circleci/go@3.0.2
+  cypress: cypress-io/cypress@5.0.1
+
+jobs:
+  build:
+    executor:
+      name: go/default
+      tag: 1.25.0
+    steps:
+      - checkout
+      - run:
+          command: go build main.go
+          name: Build server executbale
+      - persist_to_workspace:
+          root: ~/app
+          paths: .
+  test:
+    executor: cypress/default
+    steps:
+      - attach_workspace:
+          at: ~/app
+      - cypress/run:
+          package-manager: yarn
+          cypress-command: yarn test
+          install-browsers: true
+          start-command: yarn start
+
+workflows:
+  build_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
