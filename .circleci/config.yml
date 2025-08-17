@@ -27,6 +27,10 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/app
+      - cypress/install:
+          package-manager: yarn
+          working-directory: ~/app
+          skip-checkout: true
       - cypress/run-tests:
           cypress-command: yarn test
           start-command: yarn start
