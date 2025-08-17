@@ -23,10 +23,8 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/app
-      - cypress/run:
-          package-manager: yarn
+      - cypress/run-tests:
           cypress-command: yarn test
-          install-browsers: true
           start-command: yarn start
 
 workflows:
