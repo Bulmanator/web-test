@@ -11,6 +11,7 @@ jobs:
       tag: 1.25.0
     steps:
       - checkout
+      - run: mkdir -p ~/app
       - run:
           command: go build main.go
           name: Build server executbale
@@ -26,6 +27,7 @@ jobs:
       - cypress/run-tests:
           cypress-command: yarn test
           start-command: yarn start
+          working-directory: ~/app
 
 workflows:
   build_test:
