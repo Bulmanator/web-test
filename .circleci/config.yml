@@ -17,6 +17,7 @@ jobs:
       - persist_to_workspace:
           root: ~/app
           paths: .
+
   test:
     executor: cypress/default
     steps:
